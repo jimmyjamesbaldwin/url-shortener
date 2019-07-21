@@ -1,0 +1,68 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-credentials
+data:
+  username: bXktYXBw
+  password: Mzk1MjgkdmRnN0pi
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: url-shortener
+spec:
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: url-shortener
+    spec:
+      containers:
+        - name: url-shortener
+          image: james.azurecr.io/test/urlshortener_url_shortener:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: FLASK_CONFIG
+              value: production
+            - name: DATABASE_DB
+              value: urls
+            - name: DATABASE_HOST
+              value: db
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: password
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 60
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: url-shortener
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    app: url-shortener

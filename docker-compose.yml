@@ -1,0 +1,27 @@
+version: '3'
+services:
+  url_shortener:
+    build:
+      context: url_shortener
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_CONFIG=development
+      - DATABASE_USERNAME=user
+      - DATABASE_PASSWORD=test
+      - DATABASE_HOST=db
+      - DATABASE_DB=urls
+  db:
+    image: mysql:5.7.26
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "32000:3306"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+      - ./persistent:/var/lib/mysql
+  memcached:
+    image: memcached:1.5.16
+    ports:
+        - "11211:11211"

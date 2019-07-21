@@ -1,0 +1,35 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>Private URL shortener</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <style>
+            .alert { width:65% }
+        </style>
+    </head>
+    <body>
+        <div class="col-sm-8 col-sm-offset-1">
+            <h1>URL shortener</h1>
+            <br/>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form method="POST" action="/">
+                {{ form.hidden_tag() }}
+                {{ form.url.label }} {{ form.url(size=65) }}
+                <br/>
+                <br/>
+                <button type="submit" class="btn btn-success" id="url_input_submit">Shorten!</button>
+            </form>        
+        </div>
+    </body>
+
+</html>
