@@ -10,4 +10,4 @@ CREATE TABLE urls (
 INSERT INTO urls
   (short_url, long_url)
 VALUES
-  ('UWY8JFWaCBe5', 'www.google.com')
+  ('KrTKExQa5fri', 'www.google.com')
