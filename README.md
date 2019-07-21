@@ -1,8 +1,7 @@
-# urlshortener
-<img src="https://img.stackshare.io/service/9133/Azure-Container-Service_COLOR-300x300.png" width="100"><img src="https://i0.wp.com/codeblog.dotsandbrackets.com/wp-content/uploads/2016/10/compose-logo.jpg?resize=262%2C285" width="100"><img src="https://qph.fs.quoracdn.net/main-qimg-28cadbd02699c25a88e5c78d73c7babc" width="100">
-
-
+# url-shortener
 A reasonably simple solution for the common 'design a tinyurl-like url shortener service' interview question. Currently a work in progress, also quite untested.
+
+<img src="https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/fd7cc81b-8f38-472b-b7b8-6c8da0057a89.png" width="100"><img src="https://i0.wp.com/codeblog.dotsandbrackets.com/wp-content/uploads/2016/10/compose-logo.jpg?resize=262%2C285" width="100"><img src="https://qph.fs.quoracdn.net/main-qimg-28cadbd02699c25a88e5c78d73c7babc" width="100">
 
 ![screenshot](https://i.imgur.com/qsERkqI.png)
 
